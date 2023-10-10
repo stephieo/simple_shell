@@ -6,8 +6,8 @@
 
 void print_prompt(void)
 {
-        if (isatty(STDIN_FILENO))
-                write(STDIN_FILENO, "$ ", 2);
+	if (isatty(STDIN_FILENO))
+		write(STDIN_FILENO, "$ ", 2);
 }
 
 /**
@@ -21,21 +21,21 @@ void print_prompt(void)
 
 ssize_t line_reader(char **buf, size_t *n)
 {
-        ssize_t shellstate = getline(buf, n, stdin);
+	ssize_t shellstate = getline(buf, n, stdin);
 
-        if (shellstate == -1)
-        {
-                if (isatty(STDIN_FILENO))
-                        write(STDOUT_FILENO, "\n", 1);
-                free(*buf);
-                return (-1);
-        }
-        if (_strspn(*buf, " \t\n\f\r") == _strlen(*buf))
-        {
-                return (1);
-        }
+	if (shellstate == -1)
+	{
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
+		free(*buf);
+		return (-1);
+	}
+	if (_strspn(*buf, " \t\n\f\r") == _strlen(*buf))
+	{
+		return (1);
+	}
 
-        return (shellstate);
+	return (shellstate);
 }
 /**
  * token_generator - Tokenize the cmdline into a list of strings
@@ -89,17 +89,3 @@ char **token_generator(char *cmdline, const char *delim, int *ac)
 	return (av);
 }
 
-/**
- * clean_cmd - cleans up av and its elements
- * @ac: argument count
- * @av: argument vector
- */
-
-void clean_cmd(int __attribute__((unused)) ac, char **av)
-{
-	int i;
-
-	for (i = 0; i < ac || av[i] != NULL; i++)
-		free(av[i]);
-	free(av);
-}

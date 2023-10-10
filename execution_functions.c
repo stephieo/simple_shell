@@ -103,59 +103,11 @@ int exec_from_path(char **envp, pid_t pid, char **av, int *cmdstatus)
 	return (0);
 }
 
-/**
- * _getenv - gets the desired environment variabl
- * @envp: environment array
- * @shortcmd: command to turn to full path
- *
- * Return: full path otf command
- */
-
-char *_getenv(char **envp, char *shortcmd)
-{
-	int i = 0;
-	char *currentvar, *Eval = NULL, *dir, *fullpath = NULL, temp[1024];
-	struct stat filecheck;
-
-	while (envp[i])
-	{
-		_strcpy(temp, envp[i]);
-		currentvar = strtok(temp, "=");
-		if (!(_strcmp(currentvar, "PATH")))
-			break;
-		i++;
-	}
-	Eval = strtok(NULL, "=");
-	dir = strtok(Eval, ":");
-	while (dir)
-	{
-		fullpath = malloc(_strlen(dir) + _strlen(shortcmd) +  2);
-		if (fullpath == NULL)
-		{
-			perror("Memory allocation error");
-			free(fullpath);
-			return (NULL);
-		}
-		_memset(fullpath, 0, _strlen(dir) + _strlen(shortcmd) +  2);
-		fullpath[0] = '0';
-		_strcpy(fullpath, dir);
-		_strcat(fullpath, "/");
-		_strcat(fullpath, shortcmd);
-		if ((stat(fullpath, &filecheck)) == 0)
-			return (fullpath);
-		free(fullpath);
-		dir = strtok(NULL, ":");
-		if (dir)
-			continue;
-		break;
-	}
-	err_notfound(shortcmd);
-	return (NULL);
-}
 
 /**
  * is_bultin_cmd - checks whether command is a built in
  * @av: tokens from terminal
+ * @ac: number of tokens
  * @cmdline: shell cmdline
  * @status: status of exit of prev cmd
  * @newenviron: ptr to env copy
@@ -191,46 +143,3 @@ int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 	return (-1);
 }
 
-/**
- * exitshell - handler for exit cmd in shell
- * @av: user input lis
- * @status: status of exit pf prev cmd
- * @cmdline: cmdline fof shell
- * @newenviron: env copy
- * @newentry: new entry in env
- * Return: void
- */
-
-void exitshell(int status, char **av, char *cmdline,
-	       char **newenviron, char *newentry)
-{
-	int et;
-	uintptr_t intstat;
-
-	if (av[1])
-	{
-		et = _atoi(av[1]);
-		if (et < 0)
-		{
-			perror("./hsh");
-			exit(2);
-		}
-		else if (et > 0)
-		{
-			cleanall(av, cmdline);
-			if (newenviron != NULL)
-				free(newenviron);
-			if (newentry != NULL)
-				free(newentry);
-			exit(et);
-		}
-		intstat = (uintptr_t)av[0];
-		exit(intstat);
-	}
-	cleanall(av, cmdline);
-	if (newenviron != NULL)
-		free(newenviron);
-	if (newentry != NULL)
-		free(newentry);
-	exit(status);
-}

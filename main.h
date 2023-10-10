@@ -12,6 +12,7 @@
 #include <string.h>
 #include <signal.h>
 #include <dirent.h>
+#include <stdint.h>
 
 extern char **environ;
 volatile int break_loop;
