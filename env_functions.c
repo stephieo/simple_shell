@@ -137,14 +137,14 @@ void _printenv(char **av)
 }
 
 /**
- * _getenv - gets the desired environment variabl
+ * _getfullpath - gets the desired environment variabl
  * @envp: environment array
  * @shortcmd: command to turn to full path
  *
  * Return: full path otf command
  */
 
-char *_getenv(char **envp, char *shortcmd)
+char *_getfullpath(char **envp, char *shortcmd)
 {
 	int i = 0;
 	char *currentvar, *Eval = NULL, *dir, *fullpath = NULL, temp[1024];
