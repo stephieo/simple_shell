@@ -47,31 +47,44 @@ char *_memset(char *s, char b, unsigned int n);
 int _strncmp(char *s1, char *s2, int n);
 
 /*MAIN FUNCTIONS*/
+
+/*read_and_split_functions.c*/
 void print_prompt(void);
 ssize_t line_reader(char **buf, size_t *n);
 char **token_generator(char *cmdline, const char *delim, int *ac);
+
+/*execution functions*/
 int exec_cmd(char **av, pid_t pid, int *cmdstatus);
 char *_getfullpath(char **envp, char *shortcmd);
 int exec_from_path(char **envp, pid_t pid, char **av, int *cmdstatus);
 int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 		char **newentry, int ac);
-void exitshell(int status, char **av, char *cmdline,  char **newenviron,
-	       char *newentry);
-void my_sigint(int signum);
-void _printenv(char **av);
-void cleanall(char **av, char *cmdline);
+
+/*env_functions*/
+void _handleenv(char **av, char ***newenviron, char **newentry);
 void _addenv(char *name, char *value, int envlen, char ***newenviron,
 	     char **newentry);
-void _updateenv(char **av);
+int _isvalidenvcmd(char **av);
+void _printenv(char **av);
+char *_getfullpath(char **envp, char *shortcmd);
+
+/*exit_cleanup_error funcitons*/
+void exitshell(int status, char **av, char *cmdline,  char **newenviron,
+	       char *newentry);
+void cleanall(char **av, char *cmdline);
 void err_notfound(char *shortcmd);
 void clean_cmd(int __attribute__((unused)) ac, char **av);
 int exec_cleanup(int exec_return, int ac, char **av);
+
+/*change_dir functions*/
 void _cd(char **av, int ac);
 void change_pwd(char *oldpwdpath);
 void change_oldpwd(char *pwdpath);
-void _handleenv(char **av, char ***newenviron, char **newentry);
-int _isvalidenvcmd(char **av);
 void get_home(char **homevar);
+
+/*other_main_functions*/
+void my_sigint(int signum);
+void _updateenv(char **av);
 
 
 #endif
