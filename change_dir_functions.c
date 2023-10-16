@@ -11,8 +11,12 @@ void _cd(char __attribute__((unused))**av, int ac)
 	     *cwd = malloc(1024), *homevar, *temp;
 
 	getcwd(buffer, 1024);
-	_strcpy(cwd, buffer);
+	_strcpy(cwd, buffer); /*can use strdup instead*/
 	printf("cwd is: %s\n", cwd);
+
+	/*best to split functions to cd and  cd to path*/
+	/**
+	 * use strcmp to check if av[1] is */.
 	if (av[ac - 1] != av[0])
 	{
 		if (chdir(av[1]) != -1)

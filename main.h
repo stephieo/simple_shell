@@ -55,6 +55,7 @@ char **token_generator(char *cmdline, const char *delim, int *ac);
 
 /*execution functions*/
 int exec_cmd(char **av, pid_t pid, int *cmdstatus);
+char *_getfullpath(char **envp, char *shortcmd);
 int exec_from_path(char **envp, pid_t pid, char **av, int *cmdstatus);
 int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 		char **newentry, int ac);

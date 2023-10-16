@@ -65,7 +65,7 @@ int exec_from_path(char **envp, pid_t pid, char **av, int *cmdstatus)
 	int status;
 
 	break_loop = 1;
-	fullpath = _getenv(envp, shortcmd);
+	fullpath = _getfullpath(envp, shortcmd);
 	if (fullpath == NULL)
 	{
 		clean_cmd(1, av);
