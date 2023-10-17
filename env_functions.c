@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * _handleenv - sets env variable to a new val
+ * _handle_set_unset - sets env variable to a new val
  * @av: user input toks
  * @newenviron: environ temp ptr
  * @newentry: new env ptr
  */
 
-void _handleenv(char **av, char ***newenviron, char **newentry)
+void _handle_set_unset(char **av, char ***newenviron, char **newentry)
 {
 	char *ev = NULL, *name, *value;
 	int i, namelen, id = -1, envlen, hasvalidargs = _isvalidenvcmd(av);
