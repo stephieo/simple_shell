@@ -3,6 +3,7 @@
 /**
  * _cd - changes directory & udates PWD and OLDPWD
  * @av: argument vector
+ * @ac: argument count
  *
  */
 void _cd(char __attribute__((unused))**av, int ac)
@@ -141,7 +142,8 @@ void change_oldpwd(char *oldpwdpath)
 
 
 /**
- * get_home : gets the value of the HOME variable
+ * get_home - gets the value of the HOME variable
+ * @homevar: home environment variable
  */
 void get_home(char **homevar)
 {
@@ -165,6 +167,3 @@ void get_home(char **homevar)
 	*/return;
 
 }
-/**
- * get_PWD : gets the value of the PWD variable
- */
