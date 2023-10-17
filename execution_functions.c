@@ -132,7 +132,7 @@ int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 	}
 	if (_strcmp("setenv", cmd) == 0 || _strcmp("unsetenv", cmd) == 0)
 	{
-		_handleenv(av, newenviron, newentry);
+		_handle_set_unset(av, newenviron, newentry);
 		return (0);
 	}
 	if (_strcmp("cd", cmd) == 0)

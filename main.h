@@ -61,7 +61,7 @@ int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 		char **newentry, int ac);
 
 /*env_functions*/
-void _handleenv(char **av, char ***newenviron, char **newentry);
+void _handle_set_unset(char **av, char ***newenviron, char **newentry);
 void _addenv(char *name, char *value, int envlen, char ***newenviron,
 	     char **newentry);
 int _isvalidenvcmd(char **av);
