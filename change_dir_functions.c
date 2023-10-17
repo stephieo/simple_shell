@@ -16,7 +16,8 @@ void _cd(char __attribute__((unused))**av, int ac)
 
 	/*best to split functions to cd and  cd to path*/
 	/**
-	 * use strcmp to check if av[1] is */.
+	 * use strcmp to check if av[1] is 
+	 */
 	if (av[ac - 1] != av[0])
 	{
 		if (chdir(av[1]) != -1)
