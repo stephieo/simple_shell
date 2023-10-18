@@ -69,7 +69,7 @@ void _printenv(char **av);
 char *_getfullpath(char **envp, char *shortcmd);
 
 /*exit_cleanup_error funcitons*/
-void exitshell(int status, char **av, char *cmdline,  char **newenviron,
+void terminate_shell(int status, char **av, char *cmdline,  char **newenviron,
 	       char *newentry);
 void cleanall(char **av, char *cmdline);
 void err_notfound(char *shortcmd);

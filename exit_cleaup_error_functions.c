@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * exitshell - handler for exit cmd in shell
+ * terminate_shell - handler for exit cmd in shell
  * @av: user input lis
  * @status: status of exit pf prev cmd
  * @cmdline: cmdline fof shell
@@ -10,7 +10,7 @@
  * Return: void
  */
 
-void exitshell(int status, char **av, char *cmdline,
+void terminate_shell(int status, char **av, char *cmdline,
 	       char **newenviron, char *newentry)
 {
 	int et;

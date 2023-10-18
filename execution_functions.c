@@ -122,7 +122,7 @@ int is_builtin_cmd(char **av, char *cmdline, int status, char ***newenviron,
 
 	if (_strcmp("exit", cmd) == 0)
 	{
-		exitshell(status, av, cmdline, (*newenviron), (*newentry));
+		terminate_shell(status, av, cmdline, (*newenviron), (*newentry));
 		return (0);
 	}
 	if (_strcmp("env", cmd) == 0)
