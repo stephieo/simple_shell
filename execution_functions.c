@@ -2,14 +2,14 @@
 #include <stdint.h>
 
 /**
- * exec_cmd - Executes the command
+ * spawn_and_exec_cmd - Executes the command
  * @av: list of args
  * @pid: proccess id
  * @cmdstatus: exit status pf prev cmd
  * Return: -1 (failed execution), 0 (success)
  */
 
-int exec_cmd(char **av, pid_t pid, int *cmdstatus)
+int spawn_and_exec_cmd(char **av, pid_t pid, int *cmdstatus)
 {
 	int i = 0, status;
 

@@ -47,7 +47,7 @@ int main(int __attribute__((unused)) argc,
 		}
 		else if ((access(av[0], F_OK) == 0))
 		{
-			if ((exec_cmd(av, pid, &cmdstatus)) == -1)
+			if ((spawn_and_exec_cmd(av, pid, &cmdstatus)) == -1)
 				continue;
 		}
 	clean_cmd(ac, av);
